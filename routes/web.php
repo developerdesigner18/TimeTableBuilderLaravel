@@ -32,5 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::post('checkconfig',[TimetableController::class,'checkconfig'])->name('checkconfig');
     Route::post('saveconfig',[TimetableController::class,'saveconfig'])->name('saveconfig');
     Route::post('loadconfig',[TimetableController::class,'loadconfig'])->name('loadconfig');
+    Route::post('loadslot',[TimetableController::class,'loadslot'])->name('loadslot');
+    Route::post('updateslot',[TimetableController::class,'updateslot'])->name('updateslot');
 });
 require __DIR__.'/auth.php';

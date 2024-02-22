@@ -6,6 +6,9 @@
         </h2>
     </x-slot>
     <style>
+        .selectrow {
+            padding: 7px 15px;
+        }
         .error
         {
             color:red;
@@ -21,12 +24,42 @@
             background-color: white;
             border: 1px solid #1a202c;
         }
-
+.modal-footer button:hover{
+    color: #ffffff !important;
+}
         .ms-auto {
             margin-left: 0 !important;
         }
     </style>
     {{--  model  --}}
+    <div class="modal fade" id="updateslotmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <div class="text-black">
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(4,4,4,1)"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg></div>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="UpdateSlotdata" method="post" data-row="" data-col="">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Enter Teacher</label>
+                            <input type="text" class="form-control"  id="teacherid" name="teacherid" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="sectionid" class="form-label">Enter Subject</label>
+                            <input type="text" class="form-control" id="subjectid" name="subjectid" value="">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary text-black" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn  btn-success text-black" id="UpdateData">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="modalconfigtable" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -192,102 +225,8 @@
             <h1 class="text-center pb-3" style="font-size: 30px; font-weight: 700">Class - Section</h1>
             <table class="table table-bordered text-center">
                 <thead id="timetable-header">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Monday</th>
-                    <th scope="col">Tuesday</th>
-                    <th scope="col">Wednesday</th>
-                    <th scope="col">Thursday</th>
-                    <th scope="col">Friday</th>
-                    <th scope="col">Saturday</th>
-                </tr>
                 </thead>
                 <tbody id="timetable-body">
-{{--                <tr>--}}
-{{--                    <th scope="col" rowspan="2">8:00-9:00</th>--}}
-{{--                    <td>Laraval1</td>--}}
-{{--                    <td>Laraval2</td>--}}
-{{--                    <td>Laraval3</td>--}}
-{{--                    <td>Laraval4</td>--}}
-{{--                    <td>Laraval5</td>--}}
-{{--                    <td>Laraval6</td>--}}
-{{--                </tr>--}}
-{{--                <tr>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                </tr>--}}
-{{--                <tr>--}}
-{{--                    <th scope="col" rowspan="2">9:00-10:00</th>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                </tr>--}}
-{{--                <tr>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                </tr>--}}
-{{--                <tr>--}}
-{{--                    <th scope="col" rowspan="2">10:00-10:30</th>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                </tr>--}}
-{{--                <tr>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                </tr>--}}
-{{--                <tr>--}}
-{{--                    <th scope="col" rowspan="2">10:30-11:30</th>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                </tr>--}}
-{{--                <tr>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                </tr>--}}
-{{--                <tr>--}}
-{{--                    <th scope="col" rowspan="2">11:30-12:30</th>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                    <td>Laraval</td>--}}
-{{--                </tr>--}}
-{{--                <tr>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                    <td>Tushar Sir</td>--}}
-{{--                </tr>--}}
                 </tbody>
             </table>
             <div class="d-flex justify-content-center">
@@ -318,6 +257,18 @@
         var header_content='<tr><th scope="col">#</th>';
         var content=JSON.parse(slots.content);
         var sir_content=JSON.parse(slots.sircontent);
+        for (var index = 0; index < content.length; index++) {
+            var values = content[index];
+            for (var i = 0; i < values.length; i++) {
+                content[index][i] = '<td class="button-row"><button class="selectrow" data-row="' + index + '" data-col="' + i + '" data-type="subject">' + values[i] + '</button></td>';
+            }
+        }
+        for (var index = 0; index < sir_content.length; index++) {
+            var values = sir_content[index];
+            for (var i = 0; i < values.length; i++) {
+                sir_content[index][i] = '<td class="button-row"><button class="selectrow" data-row="' + index + '" data-col="' + i + '" data-type="teacher">' + values[i] + '</button></td>';
+            }
+        }
         for(var i=0;i<parseInt(data.daysinweek);i++)
         {
             header_content += '<th scope="col">'+week[i]+'</th>';
@@ -366,13 +317,92 @@
                 body_content += '<tr>'+ '<th scope="col" >'+timesection[i] +'-'+ timesection[i+1]+'</th>' + '<th colspan="'+data.daysinweek+'">Break</th>' + '</tr>';
             }
             else{
-                body_content += '<tr>'+ '<th scope="col" rowspan="2">'+timesection[i] +'-'+ timesection[i+1]+'</th>' + content[i] + '</tr>' + '<tr>' + sir_content[i] + '</tr>';
+                body_content += '<tr>'+ '<th scope="col" rowspan="2">'+timesection[i] +'-'+ timesection[i+1]+'</th>' + sir_content[i] + '</tr>' + '<tr>' + content[i] + '</tr>';
             }
 
         }
         $('#timetable-body').html(body_content);
         // console.log(timesection,data);
     }
+    $('#updateslotmodal').on('shown.bs.modal',function(){
+
+    });
+    $('#UpdateData').on('click',function(){
+        event.preventDefault();
+        var rowid = $('#UpdateSlotdata').attr('data-row');
+        var colid = $('#UpdateSlotdata').attr('data-col');
+        var teacher = $('#teacherid').val();
+        var subject = $('#subjectid').val();
+        var configid=$('#modalconfigtableview').attr('data-id');
+        $.ajax({
+            url:'{{route('updateslot')}}',
+            type:'POST',
+            contentType:'application/json',
+            data:JSON.stringify({
+                '_token':'{{csrf_token()}}',
+                'rowid':rowid,
+                'colid':colid,
+                'teacher':teacher,
+                'subject':subject,
+                'config':configid
+            }),
+            success:function(response)
+            {
+                if(response.status === 200)
+                {
+                    toastr.success("Updated Successfully");
+                    $('#UpdateSlotdata')[0].reset();
+                    $('#updateslotmodal').modal('hide');
+                    constructtable(response.data,response.slots);
+
+                }
+                else{
+                    toastr.error("Error in Fetching data");
+                }
+            },
+            error:function(xhr,status,error)
+            {
+                console.error(error);
+            }
+        });
+    });
+    $(document).on('click','.selectrow',function(){
+        event.preventDefault();
+        var rowid=$(this).attr('data-row');
+        var colid=$(this).attr('data-col');
+        var type=$(this).attr('data-type');
+        var configid=$('#modalconfigtableview').attr('data-id');
+        $('#updateslotmodal').modal('show');
+        $.ajax({
+            url:'{{route('loadslot')}}',
+            type:'POST',
+            contentType:'application/json',
+            data:JSON.stringify({
+                '_token':'{{csrf_token()}}',
+                'rowid':rowid,
+                'colid':colid,
+                'type':type,
+                'config':configid
+            }),
+            success:function(response)
+            {
+                if(response.status === 200)
+                {
+                    $('#subjectid').val(response.data['Subject']);
+                    $('#teacherid').val(response.data['Teacher']);
+                    $('#UpdateSlotdata').attr('data-row',rowid);
+                    $('#UpdateSlotdata').attr('data-col',colid);
+                }
+                else{
+                    toastr.error("Error in Fetching data");
+                }
+            },
+            error:function(xhr,status,error)
+            {
+                console.error(error);
+            }
+        });
+    });
     $(document).ready(function () {
         var classes = new TomSelect('#class', {
             create: true,
@@ -655,7 +685,7 @@
                         {
 
                             $('#breakperiod'+i+'view').val(breaks[i]['breakperiod']);
-                            $('#breakduration'+i+'view').val(breaks[i]['breakduration']);
+                            $('#breakduration'+i+'view').val(breaks[i]['breakduration ']);
                         }
                     }
                     else{
